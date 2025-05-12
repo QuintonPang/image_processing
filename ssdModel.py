@@ -195,6 +195,8 @@ def main():
                       cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 3)
 
         cv2.imshow('people_counter', out_frame)
+         # Calculate current headcount
+        current_headcount = n_in-n_out
         k = cv2.waitKey(1) & 0xFF
         if k == 27:                    # ESC
             break

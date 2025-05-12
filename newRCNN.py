@@ -152,6 +152,10 @@ def main():
     cnt_out   = set()
     print("Press 'i' (IN), 'o' (OUT), 'l' (set Limit), ESC to exit.")
 
+
+     # Calculate current headcount
+    current_headcount = in_c - out_c
+
     cap = cv2.VideoCapture(0)
     while True:
         ret, frame = cap.read()
