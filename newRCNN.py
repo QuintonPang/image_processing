@@ -153,9 +153,6 @@ def main():
     print("Press 'i' (IN), 'o' (OUT), 'l' (set Limit), ESC to exit.")
 
 
-     # Calculate current headcount
-    current_headcount = in_c - out_c
-
     cap = cv2.VideoCapture(0)
     while True:
         ret, frame = cap.read()
@@ -185,6 +182,10 @@ def main():
         cv2.putText(out_frame, f'Limit: {headcount_limit}', (20,170),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0,100,255), 2)
                     
+        
+     # Calculate current headcount
+        current_headcount = in_c - out_c
+
         # Display alert if active
         if alert_active:
             # Create red alert overlay
