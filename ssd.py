@@ -182,6 +182,19 @@ def main():
         cv2.putText(out_frame, f'Limit: {headcount_limit}', (20,170),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0,100,255), 2)
                     
+                    
+ # Check if headcount exceeds limit
+   # Calculate current headcount
+        current_headcount = n_in-n_out
+        current_time = time.time()
+        if current_headcount > headcount_limit:
+            if not alert_active or (current_time - last_alert_time > alert_cooldown):
+                print(f"ALERT: Headcount ({current_headcount}) exceeds limit ({headcount_limit})!")
+                alert_active = True
+                last_alert_time = current_time
+        else:
+            alert_active = False
+
         # Display alert if active
         if alert_active:
             # Create red alert overlay
@@ -195,8 +208,7 @@ def main():
                       cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 3)
 
         cv2.imshow('people_counter', out_frame)
-         # Calculate current headcount
-        current_headcount = n_in-n_out
+       
         k = cv2.waitKey(1) & 0xFF
         if k == 27:                    # ESC
             break
